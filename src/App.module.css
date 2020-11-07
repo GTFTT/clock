@@ -1,4 +1,8 @@
 .mainContainer {
-    background-color: aqua;
+    min-height: 100vh;
+    background-color: #222;
     color: blueviolet;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
