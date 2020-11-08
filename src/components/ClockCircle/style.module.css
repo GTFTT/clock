@@ -1,0 +1,16 @@
+/*Circle's container*/
+.container {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: seagreen;
+}
+
+/*Clock's arrow*/
+.point {
+    width: 2%;
+    height: 5%;
+    border-radius: 20%;
+}

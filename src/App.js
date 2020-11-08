@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Style from './App.module.css';
-import Clock from './components/clock';
+import Clock from './components/Clock';
 
 class App extends Component {
     constructor(props) {

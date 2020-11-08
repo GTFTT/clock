@@ -1,0 +1,47 @@
+/*Main container for clock component*/
+.container {
+    border: 2px solid black ;
+    height: 70vh;
+    width: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/*Common for each sub component*/
+.contCommon {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/*Container for display component*/
+.displayCont {
+    width: 30%;
+    height: 30%;
+    position: absolute;
+}
+
+/*----------------------------------------------------*/
+/*Containers for each stage of a clock*/
+.firstStage {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+}
+
+.secondStage {
+    width: 70%;
+    height: 70%;
+    position: absolute;
+}
+
+.thirdStage {
+    width: 90%;
+    height: 90%;
+    position: absolute;
+}
+/*----------------------------------------------------*/

@@ -1,11 +1,13 @@
-import React, {Component} from 'react';
+/*This module shows current time and date*/
+
+import React, {useState, useRef, Component} from 'react';
 import Style from './style.module.css';
 
-export default class Clock extends Component {
+export default class Display extends Component {
     constructor(props) {
         super(props);
 
-        //Init state
+        // Init state
         const currentDate = new Date();
         this.state = {
             currentTime: new Date().toUTCString(),
@@ -15,7 +17,7 @@ export default class Clock extends Component {
 
             curDay: currentDate.getDate(), //Returns day of the month, don't mismatch with getDay which returns day of the week
             curMoth: currentDate.getMonth(),
-            curYear: currentDate.getFullYear()
+            curYear: currentDate.getFullYear(),
         }
 
         //Update state every one second
@@ -34,27 +36,14 @@ export default class Clock extends Component {
     }
 
     render() {
-        // setInterval(function(){ alert(new Date().toUTCString()); }, 3000);
+        const {curHour, curMin, curSec, curDay, curMoth, curYear } = this.state;
         return (
             <div className={Style.container}>
-                <h4>Sec: {this.state.curSec}</h4>
-                <br/>
-
-                <h4>Min: {this.state.curMin}</h4>
-                <br/>
-
-                <h4>Hour: {this.state.curHour}</h4>
-                <br/>
-
-                <h4>Day: {this.state.curDay}</h4>
-                <br/>
-
-                <h4>Month: {this.state.curMoth}</h4>
-                <br/>
-
-                <h4>Year: {this.state.curYear}</h4>
-                <br/>
+                <div className={Style.textCont}>
+                    <h5 className={Style.time}>{curHour}:{curMin}:{curSec}</h5>
+                    <h5 className={Style.date}>{curDay}/{curMoth}/{curYear}</h5>
+                </div>
             </div>
-        )
+        );
     }
 }
