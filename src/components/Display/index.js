@@ -2,6 +2,7 @@
 
 import React, {useState, useRef, Component} from 'react';
 import Style from './style.module.css';
+import ReactFitText from 'react-fittext';
 
 export default class Display extends Component {
     constructor(props) {
@@ -40,8 +41,13 @@ export default class Display extends Component {
         return (
             <div className={Style.container}>
                 <div className={Style.textCont}>
-                    <h5 className={Style.time}>{curHour}:{curMin}:{curSec}</h5>
-                    <h5 className={Style.date}>{curDay}/{curMoth}/{curYear}</h5>
+                    <ReactFitText compressor={0.5}>
+                        <h3 className={Style.time}>{curHour}:{curMin}:{curSec}</h3>
+                    </ReactFitText>
+                    <ReactFitText>
+                        <h3 className={Style.date}>{curDay}/{curMoth}/{curYear}</h3>
+                    </ReactFitText>
+                    
                 </div>
             </div>
         );

@@ -7,21 +7,32 @@ import Style from './style.module.css';
 export default class ClockCircle extends Component {
     constructor(props) {
         super(props);
-        const {func, keyId} = props;
+        const {func, keyId, fromRangeMin, fromRangeMax} = props;
 
         //Generate unique key for my component(used for animating)
         this.id = "circle_"+keyId;
         
         //Init
         this.state = {
-            deg: ((func()*360) / 59)
+            deg: this.calculateDeg(fromRangeMin, fromRangeMax, func)
         }
 
         //Update state every second to make animaion real
         this.intervalId = setInterval((() => {
-            this.setState({deg: Math.round((func()*360) / 59)});
+            const deg = this.calculateDeg(fromRangeMin, fromRangeMax, func);
+            this.setState({deg: deg});
         }).bind(this), 1000);
 
+    }
+
+    calculateDeg(fromRangeMin, fromRangeMax, func) {
+        //Validate source range
+        if(!fromRangeMin) fromRangeMin = 0;
+        if(!fromRangeMax) fromRangeMax = 59;
+
+        const fromRange = (fromRangeMax - fromRangeMin)  
+        const deg = (((func() - fromRangeMin) * 360) / fromRange);
+        return deg;
     }
 
     componentDidMount() {
@@ -34,17 +45,16 @@ export default class ClockCircle extends Component {
 
     //There magic of motion comes true, this method runs motion animation
     runAnimation(deg) {
-        anime.set(`#${this.id}`, {
-            rotate: deg, 
-        });
-        // anime({
-        //     targets: `#${this.id}`,
-        //     rotate: deg,
-
-        //     easing: 'linear',
-        //     duration: 2000,
-        //     loop: true,
+        // anime.set(`#${this.id}`, {
+        //     rotate: 1, 
         // });
+        anime({
+            targets: `#${this.id}`,
+            rotate: deg,
+            easing: 'spring(1, 80, 10, 0)',
+            duration: 2000,
+            loop: true,
+        });
     }
 
     componentWillUnmount() {
@@ -54,10 +64,10 @@ export default class ClockCircle extends Component {
 
     render() {
         //We can customize backgrounf color
-        const {backColor} = this.props;
+        const {style} = this.props;
 
         return (
-            <div id={this.id} className={Style.container} style={{backgroundColor: backColor}}>
+            <div id={this.id} className={Style.container} style={style}>
                 <div className={Style.point}></div>
             </div>
         );

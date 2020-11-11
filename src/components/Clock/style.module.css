@@ -1,6 +1,7 @@
 /*Main container for clock component*/
 .container {
-    border: 2px solid black ;
+    background-color: transparent;
+    border-radius: 20%;
     height: 70vh;
     width: 70vh;
     display: flex;
